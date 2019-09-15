@@ -46,11 +46,11 @@ public class ToDoList implements MouseListener{
 	
 	
 	void gui() {
-		addB.addMouseListener(null);
-		viewB.addMouseListener(null);
-		removeB.addMouseListener(null);
-		saveB.addMouseListener(null);
-		loadB.addMouseListener(null);
+		addB.addMouseListener(this);
+		viewB.addMouseListener(this);
+		removeB.addMouseListener(this);
+		saveB.addMouseListener(this);
+		loadB.addMouseListener(this);
 		
 		myFrame.add(myPanel);
 		myPanel.add(addB);
@@ -66,7 +66,7 @@ public class ToDoList implements MouseListener{
 	
 	void add() {
 		String task = JOptionPane.showInputDialog("Add a task");
-		tasks.add(task);		
+		tasks.add(task);
 	}
 	
 	void view() {
@@ -74,9 +74,13 @@ public class ToDoList implements MouseListener{
 			JLabel x = new JLabel(tasks.get(i));
 			myPanel.add(x);
 		}	
+		myFrame.pack();
 	}
 	
-	void remove() {}
+	void remove() {
+		
+		
+	}
 	
 	void save() {}
 	
