@@ -3,6 +3,11 @@ package _03_To_Do_List;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -78,13 +83,55 @@ public class ToDoList implements MouseListener{
 	}
 	
 	void remove() {
+		String removal = JOptionPane.showInputDialog("Remove a task");
+		for(int i = 0; i < tasks.size(); i++) {
+			if(tasks.get(i).equalsIgnoreCase(removal)) {
+				tasks.remove(i);
+			}
+		}
+	}
+	
+	void save() {
+		try {
+			FileWriter fw = new FileWriter("src/_03_To_Do_List/list.txt");
+			for(int i = 0; i < tasks.size(); i++) {
+				fw.write(tasks.get(i) + "\n");
+			}	
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	void load() {
+
+		try {
+			String fileName = "";
+			JFileChooser jfc = new JFileChooser();
+			int returnVal = jfc.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				fileName = jfc.getSelectedFile().getAbsolutePath();
+			}
+			
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			
+			String line = br.readLine();
+			while(line != null){
+				tasks.add(line);
+				line = br.readLine();
+			}
+			
+			br.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
-	
-	void save() {}
-	
-	void load() {}
 
 
 	@Override
