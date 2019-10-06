@@ -3,10 +3,11 @@ package _05_Pixel_Art_Save_State;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
-public class GridPanel extends JPanel {
+public class GridPanel extends JPanel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int windowWidth;
@@ -65,7 +66,7 @@ public class GridPanel extends JPanel {
 			for (int j = 0; j < pixels[i].length; j++) {
 				g.setColor(pixels[i][j].color);
 				g.fillRect(i*pixelWidth, j*pixelHeight, pixelWidth, pixelHeight);
-				g.setColor(Color.black);
+				//g.setColor(Color.black);
 				g.drawRect(i*pixelWidth, j*pixelHeight, pixelWidth, pixelHeight);
 
 			}
